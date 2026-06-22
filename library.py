@@ -54,7 +54,7 @@ class Library:
                 return True
         return False
 
-def add_book(self, book: Book):
+    def add_book(self, book: Book):
         if not isinstance(book, Book):
             raise TypeError("Book 인스턴스만 추가할 수 있습니다.")
         self.books.append(book)
@@ -66,7 +66,7 @@ def add_book(self, book: Book):
                 return
         raise ValueError(f"'{title}' 제목의 도서를 찾을 수 없습니다.")
 
-def search(self, keyword: str) -> list:
+    def search(self, keyword: str) -> list:
         results = []
         for book in self.books:
             if keyword in book.title or keyword in book.author:
