@@ -65,3 +65,27 @@ def add_book(self, book: Book):
                 self.books.remove(book)
                 return
         raise ValueError(f"'{title}' 제목의 도서를 찾을 수 없습니다.")
+
+def search(self, keyword: str) -> list:
+        results = []
+        for book in self.books:
+            if keyword in book.title or keyword in book.author:
+                results.append(book)
+        return results
+
+    def total_reading_time(self) -> int:
+        total = 0
+        for book in self.books:
+            total += book.reading_time()
+        return total
+
+    def get_stats(self) -> dict:
+        stats = {"Book": 0, "EBook": 0, "AudioBook": 0}
+        for book in self.books:
+            if type(book) is Book:
+                stats["Book"] += 1
+            elif type(book) is EBook:
+                stats["EBook"] += 1
+            elif type(book) is AudioBook:
+                stats["AudioBook"] += 1
+        return stats
