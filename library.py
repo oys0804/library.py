@@ -89,3 +89,56 @@ def search(self, keyword: str) -> list:
             elif type(book) is AudioBook:
                 stats["AudioBook"] += 1
         return stats
+
+def main():
+    lib = Library("중앙 도서관")
+
+    lib.add_book(Book("어린왕자", "생텍쥐페리", 96))
+    lib.add_book(EBook("파이썬 입문", "점프 투 파이썬", 300, 2.4))
+    lib.add_book(AudioBook("해리포터", "롤링", 223, 135))
+    lib.add_book(EBook("코스모스", "칼 세이건", 365, 5.1))
+    lib.add_book(AudioBook("사피엔스", "유발 하라리", 638, 312))
+
+    print(lib)
+    print(f"보유 도서: {len(lib)}권")
+    print()
+
+    new_book = Book("데미안", "헤르만 헤세", 215)
+    lib.add_book(new_book)
+    print("데미안" in lib)
+    print("없는책" in lib)
+    print()
+
+    results = lib.search("파이썬")
+    for book in results:
+        print(book)
+    print()
+
+    lib.remove_book("어린왕자")
+    print(f"삭제 후 보유 도서 수: {len(lib)}권")
+    print()
+
+    print(f"전체 예상 독서 시간: {lib.total_reading_time()}분")
+    print()
+
+    print(lib.get_stats())
+    print()
+
+    try:
+        lib.add_book("이건 책이 아님")
+    except TypeError as e:
+        print(f"TypeError: {e}")
+
+    try:
+        lib.remove_book("없는 책")
+    except ValueError as e:
+        print(f"ValueError: {e}")
+    print()
+
+    sorted_books = sorted(lib.books)
+    for book in sorted_books:
+        print(book)
+
+
+if __name__ == "__main__":
+    main()
