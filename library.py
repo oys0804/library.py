@@ -53,3 +53,15 @@ class Library:
             if book.title == title:
                 return True
         return False
+
+def add_book(self, book: Book):
+        if not isinstance(book, Book):
+            raise TypeError("Book 인스턴스만 추가할 수 있습니다.")
+        self.books.append(book)
+
+    def remove_book(self, title: str):
+        for book in self.books:
+            if book.title == title:
+                self.books.remove(book)
+                return
+        raise ValueError(f"'{title}' 제목의 도서를 찾을 수 없습니다.")
